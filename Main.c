@@ -1,54 +1,37 @@
+#include <stdlib.h>
 #include <stdio.h>
-
-char *key = "C";
-int keyIndex = 0;
-char *notes[12] = {"C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab", "A", "A#/Bb", "B"};
-int diatonicMask[12] = {1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1};
-int harmonicMajorMask[12] = {1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1};
-int doubleHarmonicMajorMask[12] = {1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1};
-int harmonicMinorMask[12] = {1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1};
-
-int getIndexForNote(char *note)
-{
-	for (int i = 0; i < 12; i++)
-	{
-		for (int j = 0; notes[j - 1] != "\0"; j++)
-		{
-			printf("notes[i][j]: %s\n", notes[i][j]);
-			printf("note[j]: %s\n", note[j]);
-			if (notes[i][j] != note[j])
-			{
-				break;
-			}
-			return i;
-		}
-	}
-
-	return -1;
-}
-
-void printScale(char *scale[7])
-{
-	for (int i = 0; i < 7; i++)
-	{
-		printf("%s ", scale[i]);
-	}
-	puts("");
-}
+#include "String.h"
+#include "IO.h"
+#include "Scale.h"
 
 int main()
 {
+	// Prompt user for a key
+	char *key = (char *)malloc(5 * sizeof(char));
+	int keyIndex = -1;
+	while (keyIndex == -1)
+	{
+		printf("Select the key by entering any of the 12 chromatic notes\n> ");
+		scanf("%s", key);
+		if (1)
+		{
+			return 0;
+		}
+		keyIndex = getIndexForNote(key);
+	}
+	printf("selected key %s with index %d\n", key, getIndexForNote(key));
+
+	// Build scale instance from key, scale, and mode selection
 	char *scale[7];
 	int scaleIndex = 0;
 	for (int i = 0; i < 12; i++)
 	{
-		if (harmonicMinorMask[i % 12])
+		if (diatonicMask[i % 12])
 		{
-			scale[scaleIndex++] = notes[(keyIndex + i) % 12];
+			scale[scaleIndex++] = chromaticScale[(keyIndex + i) % 12];
 		}
 	}
 	printScale(scale);
-	printf("%d\n", getIndexForNote("D#"));
 
 	// for (int i = 0; i < 7; i++)
 	// {
@@ -56,5 +39,6 @@ int main()
 	// 	printf("%s %s %s\n", chord[0], chord[1], chord[2]);
 	// }
 
+	free(key);
 	return 0;
 }

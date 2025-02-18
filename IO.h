@@ -1,0 +1,3 @@
+char *getKeyFromUser();
+
+char *getScaleDegreeFromUser();
