@@ -1,3 +1,4 @@
-int makeUserSelectKey(char *key);
-
-char *getScaleDegreeFromUser();
+// Methods
+int makeUserSelectKey();
+int makeUserSelectScale();
+int makeUserSelectMode();
