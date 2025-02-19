@@ -8,18 +8,13 @@ int main()
 {
 	// Prompt user for a key
 	char *key = (char *)malloc(5 * sizeof(char));
-	int keyIndex = -1;
-	while (keyIndex == -1)
+	int keyIndex = makeUserSelectKey(key);
+	if (keyIndex == -1)
 	{
-		printf("Select the key by entering any of the 12 chromatic notes\n> ");
-		scanf("%s", key);
-		if (1)
-		{
-			return 0;
-		}
-		keyIndex = getIndexForNote(key);
+		free(key);
+		return 0;
 	}
-	printf("selected key %s with index %d\n", key, getIndexForNote(key));
+	printf("Selected %s Major (chromatic note #%d)\n", key, getIndexForNote(key) + 1);
 
 	// Build scale instance from key, scale, and mode selection
 	char *scale[7];

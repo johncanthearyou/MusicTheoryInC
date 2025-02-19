@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include "String.h"
+#include "Scale.h"
 
 char *chromaticScale[12] = {"C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab", "A", "A#/Bb", "B"};
 int diatonicMask[12] = {1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1};

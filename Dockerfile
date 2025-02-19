@@ -1,6 +1,7 @@
 FROM gcc:latest
-COPY . /workspace
 WORKDIR /workspace
+COPY ** /workspace
+COPY *.c /workspace
 RUN gcc *.h *.c -o program
 CMD ["./program"]
 
