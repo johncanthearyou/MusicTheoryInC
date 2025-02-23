@@ -1,0 +1,1 @@
+char *getChordQuality(char *scale[3]);
